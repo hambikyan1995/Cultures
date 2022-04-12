@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.culturenearby.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_home_to_nav_cultures"
+            app:destination="@id/nav_cultures" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_add_culture"
+            app:destination="@id/nav_add_culture" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_cultures"
+        android:name="com.example.culturenearby.CulturesFragment"
+        android:label="@string/menu_cultures"
+        tools:layout="@layout/fragment_cultures" />
+
+    <fragment
+        android:id="@+id/nav_add_culture"
+        android:name="com.example.culturenearby.AddCultureFragment"
+        android:label="@string/menu_add_culture"
+        tools:layout="@layout/fragment_add_culture" />
+
+</navigation>

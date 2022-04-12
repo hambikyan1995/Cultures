@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Culture Nearby</string>
+    <string name="db_table_name">culruresTable</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="menu_home">Գլխավոր</string>
+    <string name="menu_cultures">Հուշարձաններ</string>
+    <string name="menu_add_culture">Ավելացնել</string>
+    <string name="menu_location">Մոտակայքում</string>
+    <string name="menu_about_us">Մեր մասին</string>
+    <string name="menu_other">Այլ</string>
+    <string name="menu_logout">Ելք</string>
+    <string name="desc">Հուշարձանների Տեղեկատվական ավտոմատացված համակարգ Android միջավայրում</string>
+
+
+    <string name="admin_login">admin</string>
+    <string name="admin_pass">111111</string>
+    <string name="admin">Ադմին</string>
+    <string name="register">Գրանցում</string>
+    <string name="login">Մուտք</string>
+    <string name="password">Գաղտնաբառ</string>
+    <string name="login_">Լոգին</string>
+    <string name="email">Email</string>
+</resources>

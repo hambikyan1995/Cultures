@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#262627"
+    android:padding="20sp">
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Անուն"
+        android:textColor="@color/white"
+        android:textColorHint="#9A9595"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="20dp" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Տվյալներ"
+        android:textColor="@color/white"
+        android:textColorHint="#9A9595"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/editName"
+        tools:layout_editor_absoluteX="20dp" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editMapLink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Քարտեզի լինկ"
+        android:textColor="@color/white"
+        android:textColorHint="#9A9595"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/editInfo"
+        tools:layout_editor_absoluteX="20dp" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Հասցե"
+        android:textColor="@color/white"
+        android:textColorHint="#9A9595"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/editMapLink"
+        tools:layout_editor_absoluteX="20dp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appCompatImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="20sp"
+        app:layout_constraintDimensionRatio="1:.7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonImage"
+        app:layout_constraintTop_toBottomOf="@+id/editAddress" />
+
+    <Button
+        android:id="@+id/buttonImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Ավելացնել Նկար"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editAddress" />
+
+    <Button
+        android:id="@+id/buttonAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Պահպանել"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
