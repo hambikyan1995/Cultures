@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -20,9 +23,11 @@ import com.example.culturenearby.databinding.FragmentCulturesBinding;
 
 import java.util.ArrayList;
 
-public class CulturesFragment extends Fragment {
+public class CulturesFragment extends Fragment implements MenuItem.OnMenuItemClickListener {
 
     private FragmentCulturesBinding binding;
+    private DBHelper dbHelper;
+    private SQLiteDatabase db;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -34,14 +39,17 @@ public class CulturesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        dbHelper = new DBHelper(getActivity());
+        db = dbHelper.getWritableDatabase();
         getCulturesDb();
     }
 
     private void getCulturesDb() {
         ArrayList<CultureData> list = new ArrayList<>();
-        DBHelper dbHelper = new DBHelper(getActivity());
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor c = db.query("culturstable", null, null, null, null, null, null);
+        dbHelper = new DBHelper(getActivity());
+        db = dbHelper.getWritableDatabase();
+        String QUERY_SELECT = "SELECT * FROM " + "culturstable" + " ORDER BY " + "id" + " DESC";
+        Cursor c = db.rawQuery(QUERY_SELECT, null);
         if (c.moveToFirst()) {
 
             int nameIndex = c.getColumnIndex("name");
@@ -78,9 +86,36 @@ public class CulturesFragment extends Fragment {
         }));
     }
 
+    private void deleteAddedCultures() {
+        db.execSQL("DELETE FROM culturstable WHERE isDefault = '0'");
+        getCulturesDb();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.delete_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        if (menuItem.getItemId() == R.id.menu_delete) {
+            deleteAddedCultures();
+        }
+        return false;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity) requireActivity()).getMenu().findItem(R.id.menu_delete).setVisible(true);
+        ((MainActivity) requireActivity()).getMenu().findItem(R.id.menu_delete).setOnMenuItemClickListener(this);
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        ((MainActivity) requireActivity()).getMenu().findItem(R.id.menu_delete).setVisible(false);
         binding = null;
     }
 }

@@ -77,6 +77,7 @@ public class AddCultureFragment extends Fragment {
             cv.put("info", info);
             cv.put("address", address);
             cv.put("mapLink", mapLink);
+            cv.put("isDefault", false);
 
             db.insert("culturstable", null, cv);
         }

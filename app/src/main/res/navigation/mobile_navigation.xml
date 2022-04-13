@@ -30,4 +30,10 @@
         android:label="@string/menu_add_culture"
         tools:layout="@layout/fragment_add_culture" />
 
+ <fragment
+        android:id="@+id/nav_about_us"
+        android:name="com.example.culturenearby.AboutUsFragment"
+        android:label="@string/menu_about_us"
+        tools:layout="@layout/fragment_about_us" />
+
 </navigation>

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,12 +42,13 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             if (login.equals(getString(R.string.admin_login)) && pass.equals(getString(R.string.admin_pass))) {
+                insertCurrentUser(null, login, pass);
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 finish();
                 return;
             }
 
-            if (isExist(login, pass)) {
+            if (isExistUser(login, pass)) {
                 getUserAndInsertCurrent(login, pass);
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 finish();
@@ -57,16 +57,11 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this, "Սխալ տվյալներ", Toast.LENGTH_SHORT).show();
         });
 
-        binding.btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-            }
-        });
+        binding.btnRegister.setOnClickListener(view ->
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class)));
     }
 
-    public boolean isExist(String login, String pass) {
+    public boolean isExistUser(String login, String pass) {
         Cursor c = null;
         try {
             String query = "select count(*) from usertable where login = ? and pass=?";
@@ -91,7 +86,6 @@ public class LoginActivity extends AppCompatActivity {
 
         db.insert("currentusertable", null, cv);
     }
-
 
     private void getUserAndInsertCurrent(String login, String pass) {
         Cursor c = null;

@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private AppBarConfiguration mAppBarConfiguration;
     private SQLiteDatabase db;
     private ActivityMainBinding binding;
+    private Menu mOptionsMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             cv.put("info", info);
             cv.put("address", address);
             cv.put("mapLink", mapLink);
+            cv.put("isDefault", true);
 
             db.insert("culturstable", null, cv);
         }
@@ -100,6 +104,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 || super.onSupportNavigateUp();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.delete_menu, menu);
+        mOptionsMenu = menu;
+        return true;
+    }
+
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -117,17 +129,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_other:
                 Toast.makeText(this, "Շուտով", Toast.LENGTH_SHORT).show();
                 break;
+
+            case R.id.nav_about_us:
+                Navigation.findNavController(this, R.id.nav_host_fragment_content_main).navigate(R.id.nav_about_us);
+                binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                break;
         }
         binding.drawerLayout.closeDrawers();
         return false;
     }
 
+    public void enableDrawer() {
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED);
+    }
+
+    public Menu getMenu() {
+       return mOptionsMenu;
+    }
+
     private void openMap() {
-        Uri gmmIntentUri = Uri.parse("geo:37.7749,-122.4194");
+        Uri gmmIntentUri = Uri.parse("http://maps.google.com");
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-        mapIntent.setPackage("com.google.android.apps.maps");
-        if (mapIntent.resolveActivity(getPackageManager()) != null) {
-            startActivity(mapIntent);
-        }
+        startActivity(mapIntent);
     }
 }

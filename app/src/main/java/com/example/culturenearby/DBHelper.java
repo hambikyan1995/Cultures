@@ -18,6 +18,7 @@ class DBHelper extends SQLiteOpenHelper {
                 + "imageUrl text,"
                 + "address text,"
                 + "mapLink text,"
+                + "isDefault boolean,"
                 + "info text" + ");");
 
         db.execSQL("create table usertable ("

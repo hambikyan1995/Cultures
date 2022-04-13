@@ -25,4 +25,10 @@
     <string name="password">Գաղտնաբառ</string>
     <string name="login_">Լոգին</string>
     <string name="email">Email</string>
+    <string name="about_us_desc">Cultre Nearby Հավելվածը ստեղծվել է 2022 թվականին
+ՀՊՄՀ ՄԻՖ ֆակուլտետի մագիստրոսական թեզի շրջանակներում\n\n
+Գիտական ղեկավար Կ. Պետրոսյան\n\n
+Ուսանող Կ. Արշակյան ։
+</string>
+    <string name="delete">Ջնջել</string>
 </resources>
