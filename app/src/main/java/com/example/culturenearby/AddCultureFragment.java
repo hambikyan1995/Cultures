@@ -72,8 +72,8 @@ public class AddCultureFragment extends Fragment {
             cv.put("info", info);
             cv.put("address", address);
             cv.put("mapLink", mapLink);
-            cv.put("wikipediaLink", wikipediaLink);
             cv.put("isDefault", false);
+            cv.put("wikipediaLink", wikipediaLink);
 
             db.insert("culturstable", null, cv);
         }
