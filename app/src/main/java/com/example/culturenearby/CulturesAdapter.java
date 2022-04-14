@@ -41,7 +41,8 @@ public class CulturesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     interface ItemClickListener {
-        void itemClick(CultureData data);
+        void imageClick(CultureData data);
+        void addressClick(CultureData data);
     }
 
     class CulturesViewHolder extends RecyclerView.ViewHolder {
@@ -65,7 +66,8 @@ public class CulturesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             tvInfo.setText(cultureData.info);
             tvAddress.setText(cultureData.address);
 
-            itemView.setOnClickListener(view -> mItemClickListener.itemClick(cultureData));
+            imageView.setOnClickListener(view -> mItemClickListener.imageClick(cultureData));
+            tvAddress.setOnClickListener(view -> mItemClickListener.addressClick(cultureData));
         }
     }
 }

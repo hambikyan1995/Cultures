@@ -75,6 +75,7 @@ public class HomeFragment extends Fragment {
                 String email = c.getString(ind);
                 if (email == null || email.isEmpty()) {
                     email = getString(R.string.admin);
+                    ((MainActivity) requireActivity()).isAdmin = true;
                 } else binding.btnAdd.setVisibility(View.GONE);
                 binding.email.setText(email);
             }

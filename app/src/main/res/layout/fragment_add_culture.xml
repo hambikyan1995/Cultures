@@ -11,7 +11,7 @@
         android:id="@+id/editName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Անուն"
+        android:hint="@string/name"
         android:textColor="@color/white"
         android:textColorHint="#9A9595"
         android:textSize="20sp"
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="Տվյալներ"
+        android:hint="@string/info"
         android:textColor="@color/white"
         android:textColorHint="#9A9595"
         android:textSize="20sp"
@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="Քարտեզի լինկ"
+        android:hint="@string/map_link"
         android:textColor="@color/white"
         android:textColorHint="#9A9595"
         android:textSize="20sp"
@@ -43,15 +43,27 @@
         tools:layout_editor_absoluteX="20dp" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/editAddress"
+        android:id="@+id/editWikipediaLink"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="Հասցե"
+        android:hint="@string/wikipedia_link"
         android:textColor="@color/white"
         android:textColorHint="#9A9595"
         android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@+id/editMapLink"
+        tools:layout_editor_absoluteX="20dp" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="@string/address"
+        android:textColor="@color/white"
+        android:textColorHint="#9A9595"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/editWikipediaLink"
         tools:layout_editor_absoluteX="20dp" />
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -70,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Ավելացնել Նկար"
+        android:text="@string/add_image"
         android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editAddress" />
@@ -79,7 +91,7 @@
         android:id="@+id/buttonAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Պահպանել"
+        android:text="@string/save"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

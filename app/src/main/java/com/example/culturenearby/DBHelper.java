@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 class DBHelper extends SQLiteOpenHelper {
 
     public DBHelper(Context context) {
-        super(context, "myDB", null, 1);
+        super(context, "culturesDB", null, 1);
     }
 
     @Override
@@ -18,6 +18,7 @@ class DBHelper extends SQLiteOpenHelper {
                 + "imageUrl text,"
                 + "address text,"
                 + "mapLink text,"
+                + "wikipediaLink text,"
                 + "isDefault boolean,"
                 + "info text" + ");");
 

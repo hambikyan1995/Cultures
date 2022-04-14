@@ -57,6 +57,7 @@ public class CulturesFragment extends Fragment implements MenuItem.OnMenuItemCli
             int infoIndex = c.getColumnIndex("info");
             int addressIndex = c.getColumnIndex("address");
             int mapLinkIndex = c.getColumnIndex("mapLink");
+            int wikipediaLinkIndex = c.getColumnIndex("wikipediaLink");
 
             do {
                 String imageUrl = c.getString(imageUrlIndex);
@@ -64,7 +65,8 @@ public class CulturesFragment extends Fragment implements MenuItem.OnMenuItemCli
                 String info = c.getString(infoIndex);
                 String address = c.getString(addressIndex);
                 String mapLink = c.getString(mapLinkIndex);
-                list.add(new CultureData(imageUrl, name, info, address, mapLink));
+                String wikipediaLink = c.getString(wikipediaLinkIndex);
+                list.add(new CultureData(imageUrl, name, info, address, mapLink, wikipediaLink));
 
             } while (c.moveToNext());
         } else
@@ -76,14 +78,26 @@ public class CulturesFragment extends Fragment implements MenuItem.OnMenuItemCli
     private void setCulturesAdapter(ArrayList<CultureData> data) {
         binding.rvCultures.setLayoutManager(new GridLayoutManager(getActivity(), 1));
 
-        binding.rvCultures.setAdapter(new CulturesAdapter(data, cultureData -> {
-            try {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(cultureData.mapLink));
-                startActivity(browserIntent);
-            } catch (ActivityNotFoundException exception) {
-                Toast.makeText(requireActivity(), "Հասցեի խնդիր", Toast.LENGTH_SHORT).show();
+        binding.rvCultures.setAdapter(new CulturesAdapter(data, new CulturesAdapter.ItemClickListener() {
+            @Override
+            public void imageClick(CultureData data) {
+                openByIntent(data.wikipediaLink);
+            }
+
+            @Override
+            public void addressClick(CultureData data) {
+                openByIntent(data.mapLink);
             }
         }));
+    }
+
+    private void openByIntent(String link) {
+        try {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+            startActivity(browserIntent);
+        } catch (Exception exception) {
+            Toast.makeText(requireActivity(), "Հասցեի խնդիր", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void deleteAddedCultures() {
@@ -108,8 +122,11 @@ public class CulturesFragment extends Fragment implements MenuItem.OnMenuItemCli
     @Override
     public void onResume() {
         super.onResume();
-        ((MainActivity) requireActivity()).getMenu().findItem(R.id.menu_delete).setVisible(true);
-        ((MainActivity) requireActivity()).getMenu().findItem(R.id.menu_delete).setOnMenuItemClickListener(this);
+        MainActivity activity = ((MainActivity) requireActivity());
+        if (activity.isAdmin) {
+            activity.getMenu().findItem(R.id.menu_delete).setVisible(true);
+            activity.getMenu().findItem(R.id.menu_delete).setOnMenuItemClickListener(this);
+        }
     }
 
     @Override

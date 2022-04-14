@@ -31,4 +31,11 @@
 Ուսանող Կ. Արշակյան ։
 </string>
     <string name="delete">Ջնջել</string>
+    <string name="name">Անուն</string>
+    <string name="info">Տվյալներ</string>
+    <string name="map_link">Քարտեզի լինկ</string>
+    <string name="wikipedia_link">Wikipedia լինկ</string>
+    <string name="address">Հասցե</string>
+    <string name="add_image">Ավելացնել Նկար</string>
+    <string name="save">Պահպանել</string>
 </resources>

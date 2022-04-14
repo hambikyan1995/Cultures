@@ -28,10 +28,7 @@ public class AddCultureFragment extends Fragment {
     private String imageUrl;
     private SQLiteDatabase db;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-
-
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentAddCultureBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -50,26 +47,24 @@ public class AddCultureFragment extends Fragment {
             }
         });
 
-        binding.buttonAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String name = binding.editName.getText().toString().trim();
-                String info = binding.editInfo.getText().toString().trim();
-                String mapLink = binding.editMapLink.getText().toString().trim();
-                String address = binding.editAddress.getText().toString().trim();
+        binding.buttonAdd.setOnClickListener(view1 -> {
+            String name = binding.editName.getText().toString().trim();
+            String info = binding.editInfo.getText().toString().trim();
+            String mapLink = binding.editMapLink.getText().toString().trim();
+            String wikipediaLink = binding.editWikipediaLink.getText().toString().trim();
+            String address = binding.editAddress.getText().toString().trim();
 
-                if (name.isEmpty() || info.isEmpty() || mapLink.isEmpty() || address.isEmpty() || imageUrl == null) {
-                    Toast.makeText(requireActivity(), "Լրացրեք բոլոր դաշտերը", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                insertItem(name, imageUrl, info, address, mapLink);
-                Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main).popBackStack();
+            if (name.isEmpty() || info.isEmpty() || mapLink.isEmpty() || address.isEmpty() || wikipediaLink.isEmpty() || imageUrl == null) {
+                Toast.makeText(requireActivity(), "Լրացրեք բոլոր դաշտերը", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            insertItem(name, imageUrl, info, address, mapLink, wikipediaLink);
+            Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main).popBackStack();
         });
     }
 
-    private void insertItem(String name, String imageUrl, String info, String address, String mapLink) {
+    private void insertItem(String name, String imageUrl, String info, String address, String mapLink, String wikipediaLink) {
         if (!isExist(name)) {
             ContentValues cv = new ContentValues();
             cv.put("imageUrl", imageUrl);
@@ -77,6 +72,7 @@ public class AddCultureFragment extends Fragment {
             cv.put("info", info);
             cv.put("address", address);
             cv.put("mapLink", mapLink);
+            cv.put("wikipediaLink", wikipediaLink);
             cv.put("isDefault", false);
 
             db.insert("culturstable", null, cv);
